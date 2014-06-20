@@ -1,0 +1,33 @@
+<%= form_for(@temperature) do |f| %>
+  <% if @temperature.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@temperature.errors.count, "error") %> prohibited this temperature from being saved:</h2>
+
+      <ul>
+      <% @temperature.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :calendar_date %><br>
+    <%= f.date_select :calendar_date %>
+  </div>
+  <div class="field">
+    <%= f.label :daily_max %><br>
+    <%= f.text_field :daily_max %>
+  </div>
+  <div class="field">
+    <%= f.label :daily_min %><br>
+    <%= f.text_field :daily_min %>
+  </div>
+  <div class="field">
+    <%= f.label :are_valid %><br>
+    <%= f.check_box :are_valid %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Calendar date:</strong>
+  <%= @temperature.calendar_date %>
+</p>
+
+<p>
+  <strong>Daily max:</strong>
+  <%= @temperature.daily_max %>
+</p>
+
+<p>
+  <strong>Daily min:</strong>
+  <%= @temperature.daily_min %>
+</p>
+
+<p>
+  <strong>Are valid:</strong>
+  <%= @temperature.are_valid %>
+</p>
+
+<%= link_to 'Edit', edit_temperature_path(@temperature) %> |
+<%= link_to 'Back', temperatures_path %>
