@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  calendar_date: 2014-06-20
-  daily_max: 9.99
-  daily_min: 9.99
-  are_valid: false
+  calendar_date: 2014-06-01
+  daily_max: 89.1
+  daily_min: 59.1
+  are_valid: true
 
 two:
-  calendar_date: 2014-06-20
-  daily_max: 9.99
-  daily_min: 9.99
-  are_valid: false
+  calendar_date: 2014-06-02
+  daily_max: 87.2
+  daily_min: 44.2
+  are_valid: true
