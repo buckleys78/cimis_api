@@ -11,10 +11,10 @@ By [Steve Buckley](steve.buckley@gerrit-tech.com).
 ## Usage
 
 The JSON request is expected in the form:
-> /stations/<station id#>/<start date as YYYY-MM-DD>/<end date as YYYY-MM-DD>/
+> /stations/station id#/start date as YYYY-MM-DD/end date as YYYY-MM-DD/
 
 The JSON response will be in the form:
-> /stations/<station id#>/<calendar data as YYYY-MM-DD>/<daily min temperature as nn.n>/<daily max temperature as nn.n>/<are valid? as boolean>
+> /stations/station id#/calendar data as YYYY-MM-DD/daily min temperature as nn.n/daily max temperature as nn.n/are valid? as boolean/
 
 
 ## Information
