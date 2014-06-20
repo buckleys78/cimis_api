@@ -2,7 +2,6 @@
 
 By [Steve Buckley](steve.buckley@gerrit-tech.com).
 
-[![Code Climate](Code Climate Badge IMG URL goes here)](Code Climate URL goes here)
 
 ## Description
 **cimis_api** This api provides a JSON endpoint for a client site such as ChartKillers to access groomed data from the California Irrigation Management Information System (CIMIS).
