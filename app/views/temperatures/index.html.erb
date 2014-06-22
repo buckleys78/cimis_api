@@ -3,6 +3,9 @@
 <table>
   <thead>
     <tr>
+      <th>Station# | </th>
+      <th>Station Name</th>
+      <th>Station ID </th>
       <th>Calendar date</th>
       <th>Daily max</th>
       <th>Daily min</th>
@@ -14,6 +17,9 @@
   <tbody>
     <% @temperatures.each do |temperature| %>
       <tr>
+        <td><%= temperature.station.station_nbr %></td>
+        <td><%= temperature.station.name %></td>
+        <td><%= temperature.station_id %></td>
         <td><%= temperature.calendar_date %></td>
         <td><%= temperature.daily_max %></td>
         <td><%= temperature.daily_min %></td>

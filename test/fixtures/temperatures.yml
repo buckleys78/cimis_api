@@ -5,9 +5,11 @@ one:
   daily_max: 89.1
   daily_min: 59.1
   are_valid: true
+  station: one
 
 two:
   calendar_date: 2014-06-02
   daily_max: 87.2
   daily_min: 44.2
   are_valid: true
+  station: one

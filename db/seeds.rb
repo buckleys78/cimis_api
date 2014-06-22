@@ -5,3 +5,26 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Station.delete_all
+Temperature.delete_all
+stations = Station.create!([{ station_nbr: "2", name: "FivePoints", city: "Five Points", is_active: true },
+                            { station_nbr: "5", name: "Shafter", city: "Shafter", is_active: true },
+                            { station_nbr: "6", name: "Davis", city: "Dave", is_active: true },
+                            { station_nbr: "7", name: "Firebaugh", city: "Firebaugh", is_active: true },
+                            { station_nbr: "8", name: "Gerber", city: "Gerber", is_active: true }])
+
+Temperature.create!([{ calendar_date: "2014-06-14", daily_max: 89.7, daily_min: 50.7, are_valid: true, station_id: stations[0].id },
+                     { calendar_date: "2014-06-15", daily_max: 89.1, daily_min: 55.0, are_valid: true, station_id: stations[0].id },
+                     { calendar_date: "2014-06-16", daily_max: 84.7, daily_min: 53.9, are_valid: true, station_id: stations[0].id },
+                     { calendar_date: "2014-06-17", daily_max: 81.2, daily_min: 46.1, are_valid: true, station_id: stations[0].id },
+                     { calendar_date: "2014-06-18", daily_max: 88.8, daily_min: 50.7, are_valid: true, station_id: stations[0].id },
+                     { calendar_date: "2014-06-19", daily_max: 94.2, daily_min: 56.0, are_valid: true, station_id: stations[0].id },
+                     { calendar_date: "2014-06-20", daily_max: 94.0, daily_min: 56.4, are_valid: true, station_id: stations[0].id }])
+
+Temperature.create!([{ calendar_date: "2014-06-14", daily_max: 86.9, daily_min: 54.4, are_valid: true, station_id: stations[1].id },
+                     { calendar_date: "2014-06-15", daily_max: 89.3, daily_min: 56.2, are_valid: true, station_id: stations[1].id },
+                     { calendar_date: "2014-06-16", daily_max: 84.8, daily_min: 54.1, are_valid: true, station_id: stations[1].id },
+                     { calendar_date: "2014-06-17", daily_max: 82.1, daily_min: 51.5, are_valid: true, station_id: stations[1].id },
+                     { calendar_date: "2014-06-18", daily_max: 87.4, daily_min: 52.1, are_valid: true, station_id: stations[1].id },
+                     { calendar_date: "2014-06-19", daily_max: 94.4, daily_min: 55.1, are_valid: true, station_id: stations[1].id },
+                     { calendar_date: "2014-06-20", daily_max: 93.4, daily_min: 56.3, are_valid: true, station_id: stations[1].id }])
