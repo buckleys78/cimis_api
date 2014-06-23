@@ -34,10 +34,9 @@ class TemperaturesTest < ActionDispatch::IntegrationTest
 
   describe "GET /api/v1/stations/" do
     it "returns the temperatures for a given station_nbr and date range" do
-      params = { "station_nbr" => stations(:one).station_nbr,
-                 "start_date"  => temperatures(:one).calendar_date,
-                 "end_date"    => temperatures(:two).calendar_date}.to_json
-
+      params = { station_nbr: stations(:one).station_nbr,
+                 start_date:  temperatures(:one).calendar_date,
+                 end_date:    temperatures(:two).calendar_date}
       get "/api/v1/stations", params, { "Accept" => "application/json" }
 
       response.success?.must_equal true
@@ -46,8 +45,8 @@ class TemperaturesTest < ActionDispatch::IntegrationTest
       body = JSON.parse(response.body)
 
       daily_max_temps = body.map { |t| t["daily_max"] }
-      daily_max_temps.must_equal [temperatures(:one).daily_max,
-                                  temperatures(:two).daily_max]
+      daily_max_temps.must_equal [temperatures(:one).daily_max.to_s,
+                                  temperatures(:two).daily_max.to_s]
     end
   end
 end

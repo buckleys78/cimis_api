@@ -12,6 +12,8 @@ module Api
                                     "temperatures.daily_min")
                             .joins(:temperatures)
                             .where("station_nbr = ?", params[:station_nbr].to_s)
+                            .where("temperatures.calendar_date >= ?", params[:start_date].to_date)
+                            .where("temperatures.calendar_date <= ?", params[:end_date].to_date)
       end
 
 private
