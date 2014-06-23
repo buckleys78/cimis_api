@@ -58,14 +58,14 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  get 'api/v1/temperatures/:station_nbr/:start_date/:end_date' => 'temperatures#find_by_id', constraints: {
+  # get 'api/v1/temperatures/:station_nbr/:start_date/:end_date' => 'temperatures#find_by_id', constraints: {
 
-  }
+  # }
 # binding.pry
 
     namespace :api, defaults: {format: 'json'} do
       namespace :v1 do
-        resources :temperatures
+        # resources :temperatures
         resources :stations
       end
     end
