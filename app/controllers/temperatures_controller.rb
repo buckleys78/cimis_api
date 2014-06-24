@@ -1,6 +1,6 @@
 class TemperaturesController < ApplicationController
   before_action :set_temperature, only: [:show, :edit, :update, :destroy]
-  before_action :load_station, except: [:index, :create, :new]
+  before_action :load_station, except: [:index, :import, :create, :new]
   # GET /temperatures
   # GET /temperatures.json
   def index

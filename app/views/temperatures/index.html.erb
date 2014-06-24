@@ -2,8 +2,8 @@
 
 <p>
   Download:
-  <%= link_to "CSV", stations_path(format: "csv") %>
-  <%= link_to "Excel", stations_path(format: "xls") %>
+  <%= link_to "CSV", temperatures_path(format: "csv") %>
+  <%= link_to "Excel", temperatures_path(format: "xls") %>
 </p>
 
 <table>
@@ -37,7 +37,7 @@
   </tbody>
 </table>
 
-<%= form_tag import_stations_path, multipart: true do %>
+<%= form_tag import_temperatures_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Import" %>
 <% end %>

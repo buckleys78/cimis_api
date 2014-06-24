@@ -6,17 +6,22 @@ class Temperature < ActiveRecord::Base
     CSV.generate(options) do |csv|
       csv << column_names
       all.each do |station|
-        csv << station.attributes.values_at("id", "calendar_date", "daily_max", "daily_min", "station_id")
+        csv << station.attributes.values_at("id", "calendar_date", "daily_max", "daily_min", "are_valid", "station_id")
       end
     end
   end
 
   def self.import(file)
-    spreadsheet_columns = [:calendar_date, :daily_max, :daily_min, :station_id]
+    spreadsheet_columns = [:calendar_date, :daily_max, :daily_min, :are_valid, :station_id]
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
+      # puts "CAL DATE = #{row['calendar_date']}"
+      # dt = row['calendar_date'].split('/')
+      # dt_swapped = "#{dt[1]}/#{dt[0]}/#{dt[2]}"
+      # row['calendar_date'] = dt_swapped
+      #UGLY Hack to get month and date to properly parse - was coming thru swapped.
       station = find_by_id(row["id"]) || new
       station.attributes = row
       station.save!
