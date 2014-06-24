@@ -2,6 +2,16 @@ require 'roo'
 class Station < ActiveRecord::Base
   has_many :temperatures
 
+  def self.to_csv(options = {})
+    # column_names = [:id, :station_nbr, :name, :county, :is_active]
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |station|
+        csv << station.attributes.values_at("id", "station_nbr", "name", "county", "is_active")
+      end
+    end
+  end
+
   def self.import(file)
     spreadsheet_columns = [:station_nbr, :name, :county, :is_active]
     spreadsheet = open_spreadsheet(file)

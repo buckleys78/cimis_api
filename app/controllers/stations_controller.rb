@@ -5,6 +5,12 @@ class StationsController < ApplicationController
   # GET /stations.json
   def index
     @stations = Station.all
+    respond_to do |format|
+      format.html
+      format.json
+      format.csv { render text: @stations.to_csv }
+      format.xls { send_data @stations.to_csv(col_sep: "\t") }
+    end
   end
 
   def import

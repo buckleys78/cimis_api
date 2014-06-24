@@ -1,0 +1,18 @@
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Station nbr</th>
+    <th>Name</th>
+    <th>County</th>
+    <th>Is active</th>
+  </tr>
+  <% @stations.each do |station| %>
+    <tr>
+      <td><%= station.id %></td>
+      <td><%= station.station_nbr %></td>
+      <td><%= station.name %></td>
+      <td><%= station.county %></td>
+      <td><%= station.is_active %></td>
+    </tr>
+  <% end %>
+</table>

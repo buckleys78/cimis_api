@@ -1,4 +1,10 @@
-<h1>Listing stations</h1>
+<h1>Stations Listing</h1>
+
+<p>
+  Download:
+  <%= link_to "CSV", stations_path(format: "csv") %>
+  <%= link_to "Excel", stations_path(format: "xls") %>
+</p>
 
 <table>
   <thead>
