@@ -15,7 +15,8 @@ class StationsController < ApplicationController
 
   def import
     Station.import(params[:file])
-    redirect_to root_url, notice: "Stations imported."
+    flash[:notice] = "Stations imported."
+    redirect_to root_url
   end
 
   # GET /stations/1
