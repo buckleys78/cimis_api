@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  resources :temperatures
+  resources :temperatures do
+    collection { post :import }
+  end
 
   resources :stations do
     collection { post :import }
+    :temperatures
   end
   root to: 'stations#index'
 

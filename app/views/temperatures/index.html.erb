@@ -1,10 +1,15 @@
 <h1>Listing temperatures</h1>
 
+<p>
+  Download:
+  <%= link_to "CSV", stations_path(format: "csv") %>
+  <%= link_to "Excel", stations_path(format: "xls") %>
+</p>
+
 <table>
   <thead>
     <tr>
-      <th>Station# | </th>
-      <th>Station Name</th>
+
       <th>Station ID </th>
       <th>Calendar date</th>
       <th>Daily max</th>
@@ -16,9 +21,9 @@
 
   <tbody>
     <% @temperatures.each do |temperature| %>
+
       <tr>
-        <td><%= temperature.station.station_nbr %></td>
-        <td><%= temperature.station.name %></td>
+
         <td><%= temperature.station_id %></td>
         <td><%= temperature.calendar_date %></td>
         <td><%= temperature.daily_max %></td>
@@ -31,6 +36,11 @@
     <% end %>
   </tbody>
 </table>
+
+<%= form_tag import_stations_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
 
 <br>
 

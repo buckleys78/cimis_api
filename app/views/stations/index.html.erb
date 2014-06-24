@@ -9,6 +9,7 @@
 <table>
   <thead>
     <tr>
+      <th>Station ID</th>
       <th>Station nbr</th>
       <th>Name</th>
       <th>County</th>
@@ -20,6 +21,7 @@
   <tbody>
     <% @stations.each do |station| %>
       <tr>
+        <td><%= station.id %></td>
         <td><%= station.station_nbr %></td>
         <td><%= station.name %></td>
         <td><%= station.county %></td>
