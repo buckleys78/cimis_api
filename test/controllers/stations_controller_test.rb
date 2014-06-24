@@ -18,7 +18,7 @@ class StationsControllerTest < ActionController::TestCase
 
   test "should create station" do
     assert_difference('Station.count') do
-      post :create, station: { city: @station.city, is_active: @station.is_active, name: @station.name, station_nbr: "999"}
+      post :create, station: { county: @station.county, is_active: @station.is_active, name: @station.name, station_nbr: "999"}
     end
 
     assert_redirected_to station_path(assigns(:station))
@@ -35,7 +35,7 @@ class StationsControllerTest < ActionController::TestCase
   end
 
   test "should update station" do
-    patch :update, id: @station, station: { city: @station.city, is_active: @station.is_active, name: @station.name, station_nbr: @station.station_nbr }
+    patch :update, id: @station, station: { county: @station.county, is_active: @station.is_active, name: @station.name, station_nbr: @station.station_nbr }
     assert_redirected_to station_path(assigns(:station))
   end
 

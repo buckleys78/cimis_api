@@ -7,11 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Station.delete_all
 Temperature.delete_all
-stations = Station.create!([{ station_nbr: "2", name: "FivePoints", city: "Five Points", is_active: true },
-                            { station_nbr: "5", name: "Shafter", city: "Shafter", is_active: true },
-                            { station_nbr: "6", name: "Davis", city: "Dave", is_active: true },
-                            { station_nbr: "7", name: "Firebaugh", city: "Firebaugh", is_active: true },
-                            { station_nbr: "8", name: "Gerber", city: "Gerber", is_active: true }])
+stations = Station.create!([{ station_nbr: "2", name: "FivePoints", county: "Fresno", is_active: true },
+                            { station_nbr: "5", name: "Shafter", county: "Kern", is_active: true },
+                            { station_nbr: "6", name: "Davis", county: "Yolo", is_active: true },
+                            { station_nbr: "7", name: "Firebaugh", county: "Fresno", is_active: true },
+                            { station_nbr: "8", name: "Gerber", county: "Tehama", is_active: true }])
 
 Temperature.create!([{ calendar_date: "2014-06-14", daily_max: 89.7, daily_min: 50.7, are_valid: true, station_id: stations[0].id },
                      { calendar_date: "2014-06-15", daily_max: 89.1, daily_min: 55.0, are_valid: true, station_id: stations[0].id },

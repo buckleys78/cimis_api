@@ -19,6 +19,7 @@ group :development, :test do
   gem 'pry-nav'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
+  gem 'roo', '~> 1.13.2'
 end
 
 group :production do

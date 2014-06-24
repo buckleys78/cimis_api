@@ -3,11 +3,11 @@
 one:
   station_nbr: "8"
   name: My Station Name
-  city: My City
+  county: My County
   is_active: true
 
 two:
   station_nbr: "15"
   name: My Second Station
-  city: My Second City
+  county: My Second County
   is_active: true

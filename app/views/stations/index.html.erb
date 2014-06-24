@@ -5,7 +5,7 @@
     <tr>
       <th>Station nbr</th>
       <th>Name</th>
-      <th>City</th>
+      <th>County</th>
       <th>Is active</th>
       <th colspan="3"></th>
     </tr>
@@ -16,7 +16,7 @@
       <tr>
         <td><%= station.station_nbr %></td>
         <td><%= station.name %></td>
-        <td><%= station.city %></td>
+        <td><%= station.county %></td>
         <td><%= station.is_active %></td>
         <td><%= link_to 'Show', station %></td>
         <td><%= link_to 'Edit', edit_station_path(station) %></td>
@@ -25,6 +25,11 @@
     <% end %>
   </tbody>
 </table>
+
+<%= form_tag import_stations_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
 
 <br>
 

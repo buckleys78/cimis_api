@@ -7,6 +7,11 @@ class StationsController < ApplicationController
     @stations = Station.all
   end
 
+  def import
+    Station.import(params[:file])
+    redirect_to root_url, notice: "Stations imported."
+  end
+
   # GET /stations/1
   # GET /stations/1.json
   def show
@@ -69,6 +74,6 @@ class StationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def station_params
-      params.require(:station).permit(:station_nbr, :name, :city, :is_active)
+      params.require(:station).permit(:station_nbr, :name, :county, :is_active)
     end
 end

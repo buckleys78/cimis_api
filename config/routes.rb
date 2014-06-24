@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :temperatures
 
-  resources :stations
+  resources :stations do
+    collection { post :import }
+  end
+  root to: 'stations#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
