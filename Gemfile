@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'minitest-rails'
 gem 'pg'
 gem 'rails', '4.1.1'
+gem 'roo', '~> 1.13.2'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'spring', group: :development
@@ -19,7 +20,6 @@ group :development, :test do
   gem 'pry-nav'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
-  gem 'roo', '~> 1.13.2'
 end
 
 group :production do
