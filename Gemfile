@@ -10,6 +10,7 @@ gem 'minitest-rails'
 gem 'pg'
 gem 'rails', '4.1.1'
 gem 'roo', '~> 1.13.2'
+gem 'rufus-scheduler'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'spring', group: :development

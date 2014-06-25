@@ -17,10 +17,9 @@ class Temperature < ActiveRecord::Base
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      # puts "CAL DATE = #{row['calendar_date']}"
-      # dt = row['calendar_date'].split('/')
-      # dt_swapped = "#{dt[1]}/#{dt[0]}/#{dt[2]}"
-      # row['calendar_date'] = dt_swapped
+      # Careful!! Roo seems to get confused on Excel dates - it may rely on formatting,
+      # not native Excel dates?  In any event, month and date can get swapped.
+      # I formatted dates to YYYY-MM-DD in Excel, and the month and day stayed straight.
       #UGLY Hack to get month and date to properly parse - was coming thru swapped.
       station = find_by_id(row["id"]) || new
       station.attributes = row

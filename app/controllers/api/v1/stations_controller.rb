@@ -9,7 +9,6 @@ module Api
 
       def index
         if params[:station_nbr]
-
           respond_with Station.select("station_nbr",
                                       "temperatures.calendar_date",
                                       "temperatures.daily_max",
@@ -25,6 +24,21 @@ module Api
                                       "is_active")
         end
       end
+
+      def create_daily_temps_from_cimis
+        start_dt = Date.yesterday.to_s
+        end_dt = (Date.yesterday - 1).to_s
+        station_nbrs = "229,230,231"
+        response = HTTParty.get("http://et.water.ca.gov/api/data",
+                query: { appKey: ENV["CIMIS_API_KEY"],
+                         targets: station_nbrs,
+                         startDate: start_dt,
+                         endDate: end_dt,
+                         dataItems: "day-air-tmp-min,day-air-tmp-max" })
+        puts "CREATE_DAILY_TEMPS RESPONSE = #{response}"
+      end
+
+
 
 private
 
