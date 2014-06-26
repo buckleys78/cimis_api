@@ -1,7 +1,20 @@
 Rails.application.routes.draw do
-  resources :temperatures
+  resources :temperatures do
+    collection { post :import }
+  end
 
-  resources :stations
+  resources :stations do
+    collection { post :import }
+    :temperatures
+  end
+  root to: 'stations#index'
+
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      # resources :temperatures
+      resources :stations
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -51,22 +64,6 @@ Rails.application.routes.draw do
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 
-  get 'api/v1/temperatures/:station_nbr/:start_date/:end_date' => 'temperatures#find_by_id', constraints: {
 
-  }
-# binding.pry
-
-    namespace :api, defaults: {format: 'json'} do
-      namespace :v1 do
-        resources :temperatures
-        resources :stations
-      end
-    end
 end

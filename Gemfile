@@ -9,11 +9,16 @@ gem 'jquery-rails'
 gem 'minitest-rails'
 gem 'pg'
 gem 'rails', '4.1.1'
+gem 'roo', '~> 1.13.2'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'spring', group: :development
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+
+group :development, :production do
+  gem 'rufus-scheduler'
+end
 
 group :development, :test do
   gem 'pry-nav'

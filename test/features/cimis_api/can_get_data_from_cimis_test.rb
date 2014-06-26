@@ -1,20 +1,18 @@
 require 'test_helper'
 
-describe "Testing connection to CIMIS api" do
-  before do
-    @station_nbr = "8"
-    @start_date = Date.yesterday.to_s
-    @end_data = (Date.yesterday - 1).to_s
+describe "Testing nightly updates from CIMIS" do
+  before :each do
+    @station_nbrs = "229,230,231"
   end
 
-  it "will return a response from the CIMIS database" do
-    response = HTTParty.get("http://et.water.ca.gov/api/data",
-                query: { appKey: ENV["CIMIS_API_KEY"],
-                         targets: @station_nbr,
-                         startDate: "2014-06-01",
-                         endDate: "2014-06-02",
-                         dataItems: "day-air-tmp-min,day-air-tmp-max" })
-    response["Data"]["Providers"][0]["Name"].must_equal "cimis"
+  it "will can add unique but not duplicate temperature records" do
+    original_count = Temperature.count
+    # add two records
+    Api::Station.create_daily_temperatures_from_cimis @station_nbrs
+    Temperature.count.must_equal original_count + 4
+    # try to add them again, should not make count increase.
+    Api::Station.create_daily_temperatures_from_cimis @station_nbrs
+    Temperature.count.must_equal original_count + 4
   end
 
 end

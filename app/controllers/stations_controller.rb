@@ -5,6 +5,18 @@ class StationsController < ApplicationController
   # GET /stations.json
   def index
     @stations = Station.all
+    respond_to do |format|
+      format.html
+      format.json
+      format.csv { render text: @stations.to_csv }
+      format.xls { send_data @stations.to_csv(col_sep: "\t") }
+    end
+  end
+
+  def import
+    Station.import(params[:file])
+    flash[:notice] = "Stations imported."
+    redirect_to root_url
   end
 
   # GET /stations/1
@@ -69,6 +81,6 @@ class StationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def station_params
-      params.require(:station).permit(:station_nbr, :name, :city, :is_active)
+      params.require(:station).permit(:station_nbr, :name, :county, :is_active)
     end
 end
