@@ -12,7 +12,7 @@ class StationsTest < ActionDispatch::IntegrationTest
       body = JSON.parse(response.body)
 
       station_nbrs = body.map { |s| s["station_nbr"] }
-      station_nbrs.must_equal ["8", "15"]
+      station_nbrs.must_equal ["229", "230", "1"]
     end
   end
 end

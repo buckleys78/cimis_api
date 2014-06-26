@@ -1,13 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  station_nbr: "8"
+  station_nbr: "229"
   name: My Station Name
   county: My County
   is_active: true
 
 two:
-  station_nbr: "15"
+  station_nbr: "230"
   name: My Second Station
   county: My Second County
   is_active: true
+
+three:
+  station_nbr: "1"
+  name: Inactive Station
+  county: Death Valley
+  is_active: false

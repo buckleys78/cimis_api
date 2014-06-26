@@ -9,36 +9,12 @@ module Api
 
       def index
         if params[:station_nbr]
-          respond_with Station.select("station_nbr",
-                                      "temperatures.calendar_date",
-                                      "temperatures.daily_max",
-                                      "temperatures.daily_min")
-                              .joins(:temperatures)
-                              .where("station_nbr = ?", params[:station_nbr].to_s)
-                              .where("temperatures.calendar_date >= ?", params[:start_date].to_date)
-                              .where("temperatures.calendar_date <= ?", params[:end_date].to_date)
+          respond_with Api::Station.find_temperatures_for_date_range(
+                                    params[:station_nbr], params[:start_date], params[:end_date])
         else
-          respond_with Station.select("station_nbr",
-                                      "name",
-                                      "county",
-                                      "is_active")
+          respond_with Api::Station.find_all
         end
       end
-
-      def create_daily_temps_from_cimis
-        start_dt = Date.yesterday.to_s
-        end_dt = (Date.yesterday - 1).to_s
-        station_nbrs = "229,230,231"
-        response = HTTParty.get("http://et.water.ca.gov/api/data",
-                query: { appKey: ENV["CIMIS_API_KEY"],
-                         targets: station_nbrs,
-                         startDate: start_dt,
-                         endDate: end_dt,
-                         dataItems: "day-air-tmp-min,day-air-tmp-max" })
-        puts "CREATE_DAILY_TEMPS RESPONSE = #{response}"
-      end
-
-
 
 private
 

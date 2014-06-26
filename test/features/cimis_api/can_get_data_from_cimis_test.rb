@@ -1,20 +1,31 @@
 require 'test_helper'
 
-describe "Testing connection to CIMIS api" do
+# class TemperaturesControllerTest < ActionController::TestCase
+#   setup do
+#     @temperature = temperatures(:one)
+#   end
+
+describe "Testing nightly updates from CIMIS" do
   before do
-    @station_nbr = "8"
-    @start_date = Date.yesterday.to_s
-    @end_data = (Date.yesterday - 1).to_s
+    @station_nbrs = "229,230,231"
   end
 
-  it "will return a response from the CIMIS database" do
-    response = HTTParty.get("http://et.water.ca.gov/api/data",
-                query: { appKey: ENV["CIMIS_API_KEY"],
-                         targets: @station_nbr,
-                         startDate: "2014-06-01",
-                         endDate: "2014-06-02",
-                         dataItems: "day-air-tmp-min,day-air-tmp-max" })
-    response["Data"]["Providers"][0]["Name"].must_equal "cimis"
+  it "can update the db with new temperatures" do
+    original_count = Temperature.where(station_id: Station.find_by_station_nbr("229").id).count
+    Api::Station.create_daily_temperatures_from_cimis @station_nbrs
+    Temperature.where(station_id: Station.find_by_station_nbr("229").id).count.must_equal original_count + 2
   end
+
+  it "will not add duplicate records" do
+    original_count = Temperature.where(station_id: Station.find_by_station_nbr("229").id).count
+    # add two records
+    Api::Station.create_daily_temperatures_from_cimis @station_nbrs
+
+    Temperature.where(station_id: Station.find_by_station_nbr("229").id).count.must_equal original_count + 2
+    # try to add them again, should not make count increase.
+    Api::Station.create_daily_temperatures_from_cimis @station_nbrs
+    Temperature.where(station_id: Station.find_by_station_nbr("229").id).count.must_equal original_count + 2
+  end
+
 
 end

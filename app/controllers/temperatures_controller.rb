@@ -42,12 +42,16 @@ class TemperaturesController < ApplicationController
     respond_to do |format|
       if @temperature.save
         format.html { redirect_to @temperature, notice: 'Temperature was successfully created.' }
-        format.json { render :show, status: :created, location: @temperature }
+        # format.json { render :show, status: :created, location: @temperature }
       else
         format.html { render :new }
-        format.json { render json: @temperature.errors, status: :unprocessable_entity }
+        # format.json { render json: @temperature.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_from_batch
+
   end
 
   # PATCH/PUT /temperatures/1
@@ -56,10 +60,10 @@ class TemperaturesController < ApplicationController
     respond_to do |format|
       if @temperature.update(temperature_params)
         format.html { redirect_to @temperature, notice: 'Temperature was successfully updated.' }
-        format.json { render :show, status: :ok, location: @temperature }
+        # format.json { render :show, status: :ok, location: @temperature }
       else
         format.html { render :edit }
-        format.json { render json: @temperature.errors, status: :unprocessable_entity }
+        # format.json { render json: @temperature.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,7 +74,7 @@ class TemperaturesController < ApplicationController
     @temperature.destroy
     respond_to do |format|
       format.html { redirect_to temperatures_url, notice: 'Temperature was successfully destroyed.' }
-      format.json { head :no_content }
+      # format.json { head :no_content }
     end
   end
 
