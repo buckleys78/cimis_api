@@ -54,18 +54,22 @@ private
       json_response["Data"]["Providers"].first["Records"].each do |r|
         station = Station.find_by_station_nbr(r["Station"]) || nil
         if station
-          t = Temperature.new
-          t.calendar_date = r["Date"].to_date
-          t.station_id = station.id
-          t.daily_max = r["DayAirTmpMax"]["Value"]
-          t.daily_min = r["DayAirTmpMin"]["Value"]
-          #Qc returns " " if Good, "M" if missing, etc.
-          t.are_valid = r["DayAirTmpMax"]["Qc"] == " " && r["DayAirTmpMin"]["Qc"] == " "
-          t.save
+          calendar_date = r["Date"].to_date
+          unless Temperature.find_by_calendar_date(calendar_date)
+            t = Temperature.new
+            t.calendar_date = calendar_date
+            t.station_id = station.id
+            t.daily_max = r["DayAirTmpMax"]["Value"]
+            t.daily_min = r["DayAirTmpMin"]["Value"]
+            #Qc returns " " if Good, "M" if missing, etc.
+            t.are_valid = r["DayAirTmpMax"]["Qc"] == " " && r["DayAirTmpMin"]["Qc"] == " "
+            t.save
+          end
         else
           #Todo - write to error log.
         end
       end
+
     end
 
   end
