@@ -9,7 +9,8 @@ module Api
                      "station_nbr",
                      "temperatures.calendar_date",
                      "temperatures.daily_max",
-                     "temperatures.daily_min")
+                     "temperatures.daily_min",
+                     "temperatures.are_valid")
             .joins(:temperatures)
             .where("station_nbr = ?", station_nmbr.to_s)
             .where("temperatures.calendar_date >= ?", start_dt.to_date)

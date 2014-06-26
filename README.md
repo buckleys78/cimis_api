@@ -4,21 +4,21 @@ By [Steve Buckley](steve.buckley@gerrit-tech.com).
 
 
 ## Description
-**cimis_api** This api provides a JSON endpoint for a client site such as ChartKillers to access groomed data from the California Irrigation Management Information System (CIMIS).
+**cimis_api** This api provides a JSON endpoint for a client site such as CropTrackers to access groomed data from the California Irrigation Management Information System (CIMIS).
 
 
 ## Usage
 
-The JSON request is expected in the form:
-> /stations/station id#/start date as YYYY-MM-DD/end date as YYYY-MM-DD/
+Example JSON request:
+> http://___.herokuapp.com/api/v1/stations?station_nbr=238&start_date=2014-01-01&end_date=2014-01-03
 
-The JSON response will be in the form:
-> /stations/station id#/calendar data as YYYY-MM-DD/daily min temperature as nn.n/daily max temperature as nn.n/are valid? as boolean/
-
+Example JSON response:
+[{"id":238,"station_nbr":"240","calendar_date":"2014-01-01","daily_max":"78.2","daily_min":"27.6","are_valid":true},
+{"id":238,"station_nbr":"240","calendar_date":"2014-01-02","daily_max":"79.8","daily_min":"32.7","are_valid":true},
+{"id":238,"station_nbr":"240","calendar_date":"2014-01-03","daily_max":"77.4","daily_min":"34.5","are_valid":true}]
 
 ## Information
-
-Code Fellows 'Advanced Dev Ruby on Rails'
+Code Fellows 'Advanced Dev - Ruby on Rails'
 
 
 ### Known Issues
