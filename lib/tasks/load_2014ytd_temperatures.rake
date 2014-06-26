@@ -1,23 +1,19 @@
 namespace :load_temps do
   desc "loads the temperatures for all the stations"
-  task :load_all_stns => :environment do
-    puts "RAKE TASK LOAD_ALL_STNS"
-    # 100.times do
-    #   p = Post.create(
-    #     title: Faker::Company.catch_phrase,
-    #     body: Faker::Lorem.paragraphs.join("\n")
-    #   )
-    #   100.times do
-    #     c = p.comments.build( body: Faker::Lorem.paragraphs.join("\n"))
-    #     r = c.replies.build(  body: Faker::Lorem.paragraphs.join("\n"))
-    #     p.save!
-    #   end
+  task :load_all_stns, [:start_dt, :end_dt] => :environment do |t, args|
+    Station.connection
+    Station.find_each do |s|
+      if s.is_active
+        Api::Station.backfill_missing_temperatures(args[:start_dt], args[:end_dt], s.station_nbr)
+        puts "loaded stn #{s.station_nbr}"
+      end
     end
+  end
 
   desc "loads one station"
-  task :load_one_stn => :environment do
-    puts "RAKE TASK LOAD_ONE_STN"
-
+  # Call with: $ rake loadtemps:load_one_stn['start_dt,'end_dt','stn_nbr']
+  task :load_one_stn, [:station_nbr,:start_dt,:end_dt] => :environment do |t, args|
+    Api::Station.backfill_missing_temperatures(args[:start_dt], args[:end_dt], args[:station_nbr])
   end
 
 end

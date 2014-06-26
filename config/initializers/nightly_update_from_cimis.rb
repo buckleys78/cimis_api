@@ -1,15 +1,14 @@
 require 'rufus-scheduler'
 
-# Let's use the rufus-scheduler singleton
+#  The rufus-scheduler singleton
 #
 s = Rufus::Scheduler.singleton
-
-
-# Stupid recurrent task...
 #
-s.every '1m' do
+# s.every '24h' do
+s.cron '30 11 * * *' do
 
-  # Rails.logger.info "hello from rufus-scheduler, it's #{Time.now}"
+  Rails.logger.info "daily CIMIS update via rufus-scheduler, at #{Time.now}"
   # Api::V1::StationsController.create_daily_temps_from_cimis
-  # Api::Station.create_daily_temperatures_from_cimis
+  Api::Station.create_daily_temperatures_from_cimis
+
 end

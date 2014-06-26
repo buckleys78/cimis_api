@@ -31,6 +31,11 @@ module Api
       create_new_daily_temperatures daily_temps
     end
 
+    def self.backfill_missing_temperatures(start_dt, end_dt, station_nbr)
+      daily_temps = find_new_daily_temperatures(start_dt, end_dt, station_nbr)
+      create_new_daily_temperatures daily_temps
+    end
+
     def self.active_station_nmbrs_to_csv
       active_stations = Station.select("id", "station_nbr")
                                .where("is_active = TRUE")
@@ -41,7 +46,7 @@ module Api
 private
 
     def self.find_new_daily_temperatures(start_dt, end_dt, station_list)
-      station_list = all_station_nmbrs_to_csv unless station_list
+      station_list = active_station_nmbrs_to_csv unless station_list
       response = HTTParty.get("http://et.water.ca.gov/api/data",
               query: { appKey: ENV["CIMIS_API_KEY"],
                        targets: station_list,
@@ -55,7 +60,7 @@ private
         station = Station.find_by_station_nbr(r["Station"]) || nil
         if station
           calendar_date = r["Date"].to_date
-          unless Temperature.find_by_calendar_date(calendar_date)
+          unless Temperature.where(station_id: station.id).find_by_calendar_date(calendar_date)
             t = Temperature.new
             t.calendar_date = calendar_date
             t.station_id = station.id
