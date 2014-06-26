@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620195942) do
+ActiveRecord::Schema.define(version: 20140621160421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20140620195942) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "stations", ["station_nbr"], name: "index_stations_on_station_nbr", unique: true, using: :btree
 
   create_table "temperatures", force: true do |t|
     t.date     "calendar_date"
