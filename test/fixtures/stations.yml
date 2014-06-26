@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  station_nbr: MyString
-  name: MyString
-  city: MyString
-  is_active: false
+  station_nbr: "8"
+  name: My Station Name
+  city: My City
+  is_active: true
 
 two:
-  station_nbr: MyString
-  name: MyString
-  city: MyString
-  is_active: false
+  station_nbr: "15"
+  name: My Second Station
+  city: My Second City
+  is_active: true
