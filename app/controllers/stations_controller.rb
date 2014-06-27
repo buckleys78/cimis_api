@@ -1,10 +1,16 @@
 class StationsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :set_station, only: [:show, :edit, :update, :destroy]
 
   # GET /stations
   # GET /stations.json
   def index
-    @stations = Station.all
+    sort_criteria = sort_column + " " + sort_direction
+    # if sort_column == "id" || sort_column == "station_nbr"
+      # @stations = Station.all.sort_by { |a| -(a.sort_criteria.to_i) }
+    # else
+      @stations = Station.order(sort_criteria)
+    # end
     respond_to do |format|
       format.html
       format.json
@@ -82,5 +88,13 @@ class StationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def station_params
       params.require(:station).permit(:station_nbr, :name, :county, :is_active)
+    end
+
+    def sort_column
+      Station.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
