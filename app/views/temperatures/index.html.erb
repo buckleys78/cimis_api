@@ -9,12 +9,12 @@
 <table>
   <thead>
     <tr>
-      <th>Station #</th>
-      <th>Station ID </th>
-      <th>Calendar date</th>
-      <th>Daily max</th>
-      <th>Daily min</th>
-      <th>Are valid</th>
+      <th><%= sortable "station_nbr", "Station Nbr" %></th>
+      <th><%= sortable "id", "Station ID" %></th>
+      <th><%= sortable "calendar_date", "Calendar Date" %></th>
+      <th><%= sortable "daily_max", "Daily Max (F)" %></th>
+      <th><%= sortable "daily_min", "Daily Min (F)" %></th>
+      <th><%= sortable "are_valid", "Valid" %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

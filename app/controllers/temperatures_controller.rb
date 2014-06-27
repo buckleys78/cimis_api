@@ -1,11 +1,13 @@
 class TemperaturesController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :set_temperature, only: [:show, :edit, :update, :destroy]
   before_action :load_station, except: [:index, :import, :create, :new]
 
   # GET /temperatures
   # GET /temperatures.json
   def index
-    @temperatures = Temperature.all
+    sort_criteria = sort_column + " " + sort_direction
+    @temperatures = Temperature.order(sort_criteria)
     respond_to do |format|
       format.html
       format.json
@@ -91,5 +93,13 @@ class TemperaturesController < ApplicationController
 
     def load_station
       @station = Station.find(@temperature.station_id)
+    end
+
+    def sort_column
+      Temperature.column_names.include?(params[:sort]) ? params[:sort] : "calendar_date"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

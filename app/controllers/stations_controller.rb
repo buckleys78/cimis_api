@@ -1,6 +1,7 @@
 class StationsController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :set_station, only: [:show, :edit, :update, :destroy]
+  before_action :set_temperatures, only: [:show]
 
   # GET /stations
   # GET /stations.json
@@ -83,6 +84,10 @@ class StationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_station
       @station = Station.find(params[:id])
+    end
+
+    def set_temperatures
+      @temperatures = Temperature.where(@station).order(:calendar_date)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
