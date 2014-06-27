@@ -36,7 +36,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @station.temperatures.order(:calendar_date).each do |temperature| %>
+      <% @station.temperatures.order("#{:calendar_date} desc").each do |temperature| %>
         <tr>
           <td><%= temperature.calendar_date %></td>
           <td><%= temperature.daily_max %></td>
