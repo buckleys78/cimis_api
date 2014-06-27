@@ -1,10 +1,19 @@
-<h1>Stations Listing</h1>
+<h1>CIMIS Weather Stations</h1>
 
 <p>
   Download:
-  <%= link_to "CSV", stations_path(format: "csv") %>
+  <%= link_to "CSV", stations_path(format: "csv") %> |
   <%= link_to "Excel", stations_path(format: "xls") %>
 </p>
+
+<%= form_tag import_stations_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+
+<%= link_to 'New Station', new_station_path %>
+
+<br><br>
 
 <table>
   <thead>
@@ -34,11 +43,4 @@
   </tbody>
 </table>
 
-<%= form_tag import_stations_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
-<% end %>
 
-<br>
-
-<%= link_to 'New Station', new_station_path %>

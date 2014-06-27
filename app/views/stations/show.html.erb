@@ -42,6 +42,8 @@
           <td><%= temperature.daily_max %></td>
           <td><%= temperature.daily_min %></td>
           <td><%= temperature.are_valid %></td>
+          <td><%= link_to ' Edit ', edit_temperature_path(temperature) %></td>
+          <td><%= link_to ' Destroy ', temperature, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
